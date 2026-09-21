@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class MenuCameraController : MonoBehaviour
 {
     [Header("카메라 설정")]
-    public float duration = 2.0f;
+    public float duration = 1.5f;
 
     [Header("UI 설정")]
     public Button startButton;
