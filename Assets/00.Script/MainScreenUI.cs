@@ -17,10 +17,6 @@ public class MenuCameraController : MonoBehaviour
     private Vector3 targetPosition;
     private bool isMoving = false;
 
-    private void Start()
-    {
-        soundPanel.SetActive(false);
-    }
     public void StartCameraMove()
     {
         if (isMoving) return;
