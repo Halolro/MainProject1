@@ -7,6 +7,9 @@ public class MenuCameraController : MonoBehaviour
     [Header("카메라 설정")]
     public float duration = 1.5f;
 
+    [Header("태양 설정")]
+    public Transform sunTransform;
+
     [Header("UI 설정")]
     public Button startButton;
     public Button quitButton;
@@ -21,6 +24,7 @@ public class MenuCameraController : MonoBehaviour
     {
         soundPanel.SetActive(false);
     }
+
     public void StartCameraMove()
     {
         if (isMoving) return;
@@ -57,20 +61,36 @@ public class MenuCameraController : MonoBehaviour
     {
         isMoving = true;
         Vector3 startPosition = transform.position;
+        Vector3 startSunPosition = sunTransform != null ? sunTransform.position : Vector3.zero;
         float elapsedTime = 0f;
 
         while (elapsedTime < duration)
         {
             elapsedTime += Time.deltaTime;
             float t = elapsedTime / duration;
-
             t = Mathf.SmoothStep(0f, 1f, t);
 
-            transform.position = Vector3.Lerp(startPosition, targetPosition, t);
+            Vector3 currentCamPos = Vector3.Lerp(startPosition, targetPosition, t);
+            float deltaX = currentCamPos.x - startPosition.x;
+
+            transform.position = currentCamPos;
+
+            if (sunTransform != null)
+            {
+                sunTransform.position = new Vector3(startSunPosition.x + deltaX, sunTransform.position.y, sunTransform.position.z);
+            }
+
             yield return null;
         }
 
         transform.position = targetPosition;
+
+        if (sunTransform != null)
+        {
+            float totalDeltaX = targetPosition.x - startPosition.x;
+            sunTransform.position = new Vector3(startSunPosition.x + totalDeltaX, sunTransform.position.y, sunTransform.position.z);
+        }
+
         isMoving = false;
     }
 }
