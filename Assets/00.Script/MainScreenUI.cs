@@ -16,6 +16,7 @@ public class MenuCameraController : MonoBehaviour
     public Button soundButton;
     public GameObject soundPanel;
     public GameObject GameName;
+    public GameObject shopMenu;
 
     private Vector3 targetPosition;
     private bool isMoving = false;
@@ -23,6 +24,7 @@ public class MenuCameraController : MonoBehaviour
     private void Start()
     {
         soundPanel.SetActive(false);
+        shopMenu.SetActive(false);
     }
 
     public void StartCameraMove()
@@ -34,6 +36,7 @@ public class MenuCameraController : MonoBehaviour
         if (soundButton != null) soundButton.gameObject.SetActive(false);
         if (soundPanel != null) soundPanel.SetActive(false);
         if (GameName != null) GameName.SetActive(false);
+        shopMenu.SetActive(true);
 
         targetPosition = new Vector3(0f, transform.position.y, transform.position.z);
         StartCoroutine(MoveCameraRoutine());
