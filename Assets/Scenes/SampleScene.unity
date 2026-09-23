@@ -5876,7 +5876,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1162971993}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 519420033}
+        m_TargetAssemblyTypeName: MenuCameraController, Assembly-CSharp
+        m_MethodName: QuitGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1162971993
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8268,6 +8280,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1634820175}
+  - component: {fileID: 1634820176}
   m_Layer: 0
   m_Name: MainScreenUI
   m_TagString: Untagged
@@ -8291,6 +8304,20 @@ Transform:
   - {fileID: 1742864364}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1634820176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1634820174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9efebd8f10e11af40bf5d8372e7a8a5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EscMenu
+  menu: {fileID: 471368702}
+  Sound: {fileID: 605007010}
 --- !u!1 &1649047918
 GameObject:
   m_ObjectHideFlags: 0
@@ -10899,7 +10926,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2084226646}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1634820176}
+        m_TargetAssemblyTypeName: EscMenu, Assembly-CSharp
+        m_MethodName: ClickSoundPanel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2084226646
 MonoBehaviour:
   m_ObjectHideFlags: 0
