@@ -56,14 +56,14 @@ public class IdleGoldManager : MonoBehaviour
     {
         if (goldText != null)
         {
-            goldText.text = "Gold: " + currentGold.ToString();
+            goldText.text = "º¸À¯ÇÑ °ñµå: " + currentGold.ToString();
         }
     }
 
     private IEnumerator ShowGoldEffect()
     {
         if (goldEffect != null && fishSprites.Length > 0 && effectRenderer != null)
-        {
+        {                                       
             int randomIndex = Random.Range(0, fishSprites.Length);
             effectRenderer.sprite = fishSprites[randomIndex];
 
