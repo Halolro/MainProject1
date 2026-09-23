@@ -8,17 +8,20 @@ public class IdleGoldManager : MonoBehaviour
     public TextMeshProUGUI goldText;
     private int currentGold = 0;
     private bool isGameStarted = false;
+
     public int bonusGold = 0;
+    public int minGoldOffset = 0;
+    public float timeReduction = 0f; 
 
     [Header("물고기 이펙트 설정")]
-    public GameObject goldEffect;      
+    public GameObject goldEffect;
     public SpriteRenderer effectRenderer;
-    public Sprite[] fishSprites;        
+    public Sprite[] fishSprites;
 
-    public float moveDistance = 2f;     
-    public float moveDuration = 1f;      
+    public float moveDistance = 2f;
+    public float moveDuration = 1f;
 
-    private Vector3 startEffectPos;      
+    private Vector3 startEffectPos;
 
     private void Start()
     {
@@ -40,10 +43,15 @@ public class IdleGoldManager : MonoBehaviour
         yield return new WaitForSeconds(2f);
         while (true)
         {
-            float waitTime = Random.Range(1f, 5f);
+            float minTime = Mathf.Max(0.1f, 1f - timeReduction);
+            float maxTime = Mathf.Max(0.1f, 5f - timeReduction);
+            float waitTime = Random.Range(minTime, maxTime);
+
             yield return new WaitForSeconds(waitTime);
 
-            int randomGold = Random.Range(1, 81) + bonusGold;
+            int minGold = Mathf.Min(1 + minGoldOffset, 80);
+            int randomGold = Random.Range(minGold, 81) + bonusGold;
+
             currentGold += randomGold;
 
             UpdateGoldUI();
@@ -63,7 +71,7 @@ public class IdleGoldManager : MonoBehaviour
     private IEnumerator ShowGoldEffect()
     {
         if (goldEffect != null && fishSprites.Length > 0 && effectRenderer != null)
-        {                                       
+        {
             int randomIndex = Random.Range(0, fishSprites.Length);
             effectRenderer.sprite = fishSprites[randomIndex];
 
@@ -98,5 +106,15 @@ public class IdleGoldManager : MonoBehaviour
     public void AddBonusGold(int amount)
     {
         bonusGold += amount;
+    }
+
+    public void AddMinGoldOffset(int amount)
+    {
+        minGoldOffset += amount;
+    }
+
+    public void AddTimeReduction(float amount)
+    {
+        timeReduction += amount;
     }
 }
